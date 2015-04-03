@@ -4,7 +4,7 @@
 #include <chrono>
 #include <iostream>
 
-#define N 1000000
+#define N 100000
 
 
 using namespace std;

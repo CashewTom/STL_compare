@@ -8,15 +8,22 @@
 #include <ctime>
 #include <algorithm>
 
-#define N 100000000
+#define N 10000000
+
+struct BigData{
+	int data[1000];
+	BigData(int a){data[0]=a;}
+
+};
+
 
 using namespace std;
 
 int main(){
-	vector<int> data;
+	vector<BigData> data;
 	srand((int)time(NULL));
 	for(int i=0;i<N;i++){
-		data.push_back(rand());
+		data.push_back(BigData{rand()});
 	}
 	{
 		auto start=chrono::system_clock::now();
