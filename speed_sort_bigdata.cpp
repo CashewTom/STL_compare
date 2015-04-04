@@ -8,15 +8,27 @@
 #include <ctime>
 #include <algorithm>
 
-#define N 10000000
+#define N 100000
+
+class BigData{
+	public:
+	int data[1000];
+	BigData(int a){data[0]=a;}
+	bool operator>(const BigData &rhs)const {return data[0]>rhs.data[0];}
+	bool operator==(const BigData &rhs)const {return data[0]==rhs.data[0];}
+	bool operator<(const BigData &rhs)const {return data[0]<rhs.data[0];}
+	bool operator<=(const BigData &rhs)const {return data[0]<=rhs.data[0];}
+	bool operator>=(const BigData &rhs)const {return data[0]>=rhs.data[0];}
+};
+
 
 using namespace std;
 
 int main(){
-	vector<int> data;
+	vector<BigData> data;
 	srand((int)time(NULL));
 	for(int i=0;i<N;i++){
-		data.push_back(rand());
+		data.push_back(BigData(rand()));
 	}
 	{
 		auto start=chrono::system_clock::now();
@@ -25,7 +37,7 @@ int main(){
 		cout<<chrono::duration_cast<chrono::milliseconds>(during).count()<<endl;
 	}
 	{
-		vector<int> Vector;
+		vector<BigData> Vector;
 		for(int i=0;i<N;i++)Vector.push_back(data[i]);
 		auto start=chrono::system_clock::now();
 		sort(Vector.begin(),Vector.end());
@@ -34,7 +46,7 @@ int main(){
 		cout<<chrono::duration_cast<chrono::milliseconds>(during).count()<<endl;
 	}
 	{
-		deque<int> Deque;
+		deque<BigData> Deque;
 		for(int i=0;i<N;i++)Deque.push_back(data[i]);
 		auto start=chrono::system_clock::now();
 		sort(Deque.begin(),Deque.end());
@@ -43,7 +55,7 @@ int main(){
 		cout<<chrono::duration_cast<chrono::milliseconds>(during).count()<<endl;
 	}
 	{
-		list<int> List;
+		list<BigData> List;
 		for(int i=0;i<N;i++)List.push_back(data[i]);
 		auto start=chrono::system_clock::now();
 		List.sort();
